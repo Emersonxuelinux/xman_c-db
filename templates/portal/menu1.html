@@ -1,0 +1,92 @@
+<div class="menu1 menu_tab">
+                                <div  id="tab1" class="tab active">
+				<table class="table table-bordered">
+   <thead>
+      <tr>
+         <th>日期</th>
+         <th>设备总数</th>
+         <th>故障总数</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>今天</td>
+         <td>990</td>
+         <td>560001</td>
+      </tr>
+      <tr>
+         <td>昨天</td>
+         <td>980</td>
+         <td>4003</td>
+      </tr>
+   </tbody>
+</table>
+                                </div>
+                                <div id="tab2" class="tab">
+<!--<a href="/addHost/"><button type="button" class="btn btn-info" style="display:inline-block;">添加主机</button></a>-->
+<form action="">
+<a href="/addHost/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-info" style="display:inline-block;">添加主机</button></a>
+    <button style="float:right;">搜索</button>
+    <input type="text" id="txt1" onkeyup="showHint(this.value)" name="word" style="float:right;">
+</form>
+                                <table class="table table-bordered">
+<!--   <caption>主机列表</caption> -->
+	<br/>
+   <thead>
+      <tr>
+         <th>编号</th>
+         <th>名称</th>
+         <th>IP</th>
+         <th>角色</th>
+         <th>机架</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody id="txtHint">
+        {% for item in hosts %}
+        <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.ip}}</td>
+                <td>{{item.role}}</td>
+                <td>{{item.rack}}</td>
+		<td><a href="/hosts_modify"><span class="glyphicon glyphicon-pencil" style="color: rgb(0, 0, 0);"></span></a><a href="/hosts_delete"><span class="glyphicon glyphicon-remove" style="color: rgb(0, 0, 0);"></span></a></td>
+        </tr>
+        {% endfor %}
+   </tbody>
+</table>
+<a href="#" style="float:right;padding-left:20px;">下一页</a>
+                                </div>
+
+                                <div  id="tab3" class="tab">
+				<form action="/search/" method="get">
+<a href="/addMaintance/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-warning" style="display:inline-block;">添加故障</button></a>
+    <input type="submit" value="搜索" style="float:right;">
+    <input type="text" name="word" style="float:right;">
+</form>
+				<table class="table table-bordered">
+				  <br/>
+   <thead>
+      <tr>
+         <th>标题</th>
+         <th>IP</th>
+         <th>信息</th>
+      </tr>
+   </thead>
+   <tbody>
+	{% for item in maintances %}
+        <tr>
+	<td>{{item.title}}</td>
+                <td>{{item.ip}}</td>
+                <td>{{item.msg}}</td>
+        </tr>
+	{% endfor %}
+   </tbody>
+</table>
+				<!--AJAX 异步提交表单-->
+                                </div>
+
+
+
+
+                        </div>

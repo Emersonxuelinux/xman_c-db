@@ -1,0 +1,105 @@
+
+                        <div class="menu2 menu_tab">
+                                <div id="tab-1" class="tab">
+<form action="/search/" method="get">
+<a href="/addIdc/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-info" style="display:inline-block;">添加机房</button></a>
+    <input type="submit" value="搜索" style="float:right;">
+    <input type="text" name="word" style="float:right;">
+</form>
+                                <table class="table table-bordered">
+<br/>
+   <thead>
+      <tr>
+         <th>机房名称</th>
+         <th>运营商</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+	 <tr>
+		{% for item in idcs %}
+                <td>{{item.name}}</td>
+                <td>{{item.company}}</td>
+         <td><a href="/idcs_modify"><span class="glyphicon glyphicon-pencil" style="color: rgb(0, 0, 0);"> </span></a> <a href="/hosts_delete"><span class="glyphicon glyphicon-remove" style="color: rgb(0, 0, 0);"></span></a></td>
+      </tr>
+    {% endfor %}
+   </tbody>
+</table>
+                                </div>
+
+                                <div  id="tab-2" class="tab">
+				<form action="/search/" method="get">
+<a href="/addCompany/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-info" style="display:inline-block;">添加厂家</button></a>
+    <input type="submit" value="搜索" style="float:right;">
+    <input type="text" name="word" style="float:right;">
+</form>
+                                <table class="table table-bordered">
+<br/>
+   <thead>
+      <tr>
+         <th>厂商名称</th>
+         <th>联系电话</th>
+         <th>操作</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <tr>
+                {% for item in idcs %}
+                <td>{{item.name}}</td>
+                <td>{{item.company}}</td>
+         <td><a href="/idcs_modify"><span class="glyphicon glyphicon-pencil" style="color: rgb(0, 0, 0);"> </span></a> <a href="/hosts_delete"><span class="glyphicon glyphicon-remove" style="color: rgb(0, 0, 0);"></span></a></td>
+      </tr>
+    {% endfor %}
+   </tbody>
+</table>
+                                </div>
+
+                                <div  id="tab-3" class="tab">
+				 <form action="/search/" method="get">
+<a href="/addMaintance/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-warning" style="display:inline-block;">新增报障</button></a>
+    <input type="submit" value="搜索" style="float:right;">
+    <input type="text" name="word" style="float:right;">
+</form>
+                                <table class="table table-bordered">
+                                  <br/>
+   <thead>
+      <tr>
+         <th>日期</th>
+         <th>设备</th>
+         <th>IP</th>
+         <th>提交人</th>
+         <th>详情</th>
+         <th>确认</th>
+      </tr>
+   </thead>
+   <tbody>
+        <tr>
+                <td>2016-09-01</td>
+                <td>LIVE-SJHL-WATCH1-BJ</td>
+                <td>202.202.202.202</td>
+                <td>张泽涛</td>
+                <td>硬盘故障，下架维护, 已经发邮件！！！！！！！！！！！！！！！！</td>
+                <td>已确认！</td>
+        </tr>
+   </tbody>
+</table>
+                                <!--AJAX 异步提交表单-->
+                                </div>
+
+                                <div  id="tab-4" class="tab">
+                                        <p class="tt">2.Question</p>
+                                        <p>This is Answer！</p>
+                                        <p>This is Answer！</p>
+                                </div>
+
+                                <div  id="tab-5" class="tab">table5</div>
+                                <div  id="tab-6" class="tab">table6</div>
+                                <div  id="tab-7" class="tab">table7</div>
+                                <div  id="tab-8"  class="tab">table8</div>
+                                <div  id="tab-9" class="tab">table9</div>
+                                <div  id="tab-10" class="tab">table10</div>
+                                <div  id="tab-11"  class="tab">table11</div>
+                                <div  id="tab-12" class="tab">table12</div>
+                        </div>
