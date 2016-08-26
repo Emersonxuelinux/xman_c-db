@@ -4,9 +4,9 @@ from datetime import datetime
 # Create your models here.
 
 class Host(models.Model):
-	name = models.CharField(max_length = 30)
+	name = models.CharField(max_length = 45)
 	ip = models.CharField(max_length = 30)
-	cname = models.CharField(max_length = 30)
+	cname = models.CharField(max_length = 45)
 	idc_id = models.IntegerField()
 	role = models.CharField(max_length = 10)
 	rack = models.CharField(max_length = 30)
@@ -14,6 +14,11 @@ class Host(models.Model):
 	u_phone = models.IntegerField()
 	u_id = models.IntegerField()
 	update_time = models.DateTimeField(default=datetime.now)
+	rep_info = models.CharField(max_length = 45)
+	post_time = models.IntegerField()
+	status = models.IntegerField(default='0')
+	modelNum = models.CharField(max_length = 45,default='0000-0000')
+	
 
 	def __str__(self):
 		return self.name

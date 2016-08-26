@@ -15,7 +15,7 @@ def check_login(request):
 	passwd = request.GET.get('password')
 	#passwd = request.GET.get('p')
 	if username == "zetao2016@6rooms.com" and passwd == "123.com":
-		return HttpResponseRedirect('/view/')
+		return HttpResponseRedirect('/')
 		#return render(request,'portal/index.html')
 	else:
 		#return HttpResponse('用户名或密码错误')
@@ -25,16 +25,10 @@ def addHost(request):
 	return render(request,'portal/addHost.html')
 def addIdc(request):
 	return render(request,'portal/addIdc.html')
-
 def addMaintance(request):
 	return render(request,'portal/addMaintance.html')
 def saltCMD(request):
 	return render(request,'portal/saltCMD.html')
-def check_addHost(request):
-	return render(request,'portal/addHost.html')
-def index_bak(request):
-	title="首页"
-	return render(request,'portal/view.html',{'title':title})
 def get_hosts(request):
 	#id=request.GET['id']
 	hosts=Host.objects.all()[:10]	
@@ -42,16 +36,18 @@ def get_hosts(request):
 def idc_lists(request):
 	return HttpResponse('<p style="color:red;">测试IDC机房列表</p>')
 	#return render(request,'portal/idcs.html')
-#TEST
+#首页
 def index(request):
 	response = ""
 	hosts_list=Host.objects.all()[:10]
 	idcs_list=Idc.objects.all()[:10]
 	maintances_list=Maintance.objects.all()[:10]
-	return render(request,'test.html',{'hosts':hosts_list,'idcs':idcs_list,'maintances':maintances_list})
+	unhosts_list=Host.objects.filter(status='0')[:10]
+	return render(request,'test.html',{'hosts':hosts_list,'idcs':idcs_list,'maintances':maintances_list,'unhosts_list':unhosts_list})
 #获取IP地址
 def ip_address(request):
 	return {'ip_address': request.META['REMOTE_ADDR']}
+#搜索框搜索
 def search(request):
 	host = request.GET.get('host')
 	idc = request.GET.get('idc')
