@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login$',portal_views.login),
     url(r'^check_login/$',portal_views.check_login),
+    url(r'^check_add/$',portal_views.check_add),
     url(r'^addHost/$',portal_views.addHost),
     url(r'^addIdc/$',portal_views.addIdc),
     url(r'^addMaintance/$',portal_views.addMaintance),

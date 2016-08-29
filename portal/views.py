@@ -43,7 +43,7 @@ def index(request):
 	idcs_list=Idc.objects.all()[:10]
 	maintances_list=Maintance.objects.all()[:10]
 	unhosts_list=Host.objects.filter(status='0')[:10]
-	return render(request,'test.html',{'hosts':hosts_list,'idcs':idcs_list,'maintances':maintances_list,'unhosts_list':unhosts_list})
+	return render(request,'index.html',{'hosts':hosts_list,'idcs':idcs_list,'maintances':maintances_list,'unhosts_list':unhosts_list})
 #获取IP地址
 def ip_address(request):
 	return {'ip_address': request.META['REMOTE_ADDR']}
@@ -57,3 +57,10 @@ def search(request):
 	for i in hosts_array:
 		hosts_info += "<tr><td>"+str(i.id)+"</td><td>"+i.name+"</td><td>"+i.ip+"</td><td>"+str(i.role)+"</td><td>"+str(i.rack)+"</td><td></td></tr>"
 	return HttpResponse("<tr>"+hosts_info+"</tr>")
+#检查提交是否正确,包括设备机房维护等所有的
+def check_add(request):
+	if request.method == 'GET':
+		return HttpResponse(status=403)
+	idc=request.POST["idc-name"].encode('utf8')
+	isp=request.POST["isp-name"].encode('utf8')
+	return HttpResponse('<p style="color:red;">提交成功</p>')

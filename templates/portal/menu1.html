@@ -52,11 +52,11 @@
                 <td>{{item.role}}</td>
                 <td>{{item.rack}}</td>
 		{% ifequal item.status 0 %}
-                <td>未配置</td>
+                <td style="color:red;">未初始化</td>
 		{% else %}			
 		<td>{{item.status}}</td>
 		{% endifequal %}
-		<td><a href="/hosts_modify"><span class="glyphicon glyphicon-pencil" style="color: rgb(0, 0, 0);"></span></a><a href="/hosts_delete"><span class="glyphicon glyphicon-remove" style="color: rgb(0, 0, 0);"></span></a></td>
+		<td><a class="btn btn-primary btn-large theme-host-modify" href="javascript:;">修改</a>&nbsp;&nbsp;<a class="btn btn-primary btn-large theme-host-delete" href="javascript:;">删除</a></td>
         </tr>
         {% endfor %}
    </tbody>
@@ -66,7 +66,7 @@
 
                                 <div  id="tab3" class="tab">
 				<form action="/search/" method="get">
-<a href="/addMaintance/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-warning" style="display:inline-block;">添加故障</button></a>
+<a class="btn btn-warning theme-maintance-modify" style="height:100%;" href="javascript:;">添加故障</a></td>
     <input type="submit" value="搜索" style="float:right;">
     <input type="text" name="word" style="float:right;">
 </form>
@@ -119,3 +119,32 @@
 
 
                         </div>
+<div class="theme-popover-host">
+     <div class="theme-poptit-host">
+          <a href="javascript:;" title="关闭" class="close">关闭</a>
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;主机信息修改</h3>
+     </div>
+     <div class="theme-popbod dform">
+           <form class="theme-signin" name="loginform" action="" method="post">{% csrf_token %}
+                     <input class="ipt" type="text" name="name" value="请输入新主机名" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     <input class="ipt" type="text" name="log" value="请输入新IP地址" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     <input class="ipt" type="text" name="log" value="请输入新角色" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     <input class="ipt" type="text" name="log" value="请输入新机房位置" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     <input class="l_btn l_btn-primary" type="submit" name="submit" value=" 一键修改 " style="width:80px;height:36px;"/>
+           </form>
+     </div>
+</div>
+<div class="theme-popover-maintance">
+     <div class="theme-poptit-maintance">
+          <a href="javascript:;" title="关闭" class="close">关闭</a>
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;新增故障维护信息</h3>
+     </div>
+     <div class="theme-popbod dform">
+           <form class="theme-signin" name="loginform" action="" method="post">{% csrf_token %}
+                     <input class="ipt" type="text" name="name" value="请输入设备名称" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     <input class="ipt" type="text" name="log" value="请输入设备IP" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     <input class="ipt" type="text" name="log" value="请输入故障信息" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     <input class="l_btn l_btn-primary" type="submit" name="submit" value=" 确认提交 " style="width:80px;height:36px;"/>
+           </form>
+     </div>
+</div>
