@@ -42,7 +42,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.ip}}</td>
                 <td>{{item.modelNum}}</td>
-                <td><a class="btn btn-primary btn-large theme-hostname-init" href="javascript:;">初始化</a></td>
+                <!-- <td><a class="btn btn-primary btn-large theme-hostname-init" href="javascript:;">初始化</a></td> -->
+                <td><a class="btn btn-primary btn-large theme-hostname-init" href="/modify?t=initHost&name={{item.name}}&ip={{item.ip}}&modelNum={{item.modelNum}}">初始化</a></td>
         </tr>
         {% endfor %}
    </tbody>
@@ -88,9 +89,10 @@
           <h3>&nbsp;&nbsp;&nbsp;&nbsp;初始化主机名</h3>
      </div>
      <div class="theme-popbod dform">
-           <form class="theme-signin" name="hostnameinitForm" action="" method="post">{% csrf_token %}
-                     <input class="ipt" type="text" name="name" value="请输入新主机名" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
-                     <input class="ipt" type="text" name="log" value="备注信息" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+           <form class="theme-signin" name="hostnameinitForm" action="/check_action/" method="post">{% csrf_token %}
+                     主机名称 <input class="ipt" type="text" name="name" value="请输入新主机名" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     备注信息 <input class="ipt" type="text" name="info" value="备注信息" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+		     <input class="ipt" type="hidden" name="iname" value="init-host" style="width:280px;height:36px;"/>
                      <input class="l_btn l_btn-primary" type="submit" name="submit" value=" 一键确认 " style="width:80px;height:36px;"/>
            </form>
      </div>

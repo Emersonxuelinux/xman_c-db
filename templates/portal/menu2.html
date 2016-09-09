@@ -1,4 +1,3 @@
-
                         <div class="menu2 menu_tab">
                                 <div id="tab-1" class="tab">
 <form action="/search/" method="get">
@@ -10,18 +9,22 @@
 <br/>
    <thead>
       <tr>
-         <th>机房名称</th>
-         <th>运营商</th>
+         <th>省份名称</th>
+         <th>城市名称</th>
+         <th>所属线路</th>
+         <th>厂商名称</th>
          <th>操作</th>
       </tr>
    </thead>
    <tbody>
-      <tr>
-	 <tr>
 		{% for item in idcs %}
-                <td>{{item.name}}</td>
+      <tr id="idc-{{item.id}}">
+                <td>{{item.province}}</td>
+                <td>{{item.city}}</td>
+                <td>{{item.isp}}</td>
                 <td>{{item.company}}</td>
-         <td><a href="/idcs_modify"><span class="glyphicon glyphicon-pencil" style="color: rgb(0, 0, 0);"> </span></a> <a href="/hosts_delete"><span class="glyphicon glyphicon-remove" style="color: rgb(0, 0, 0);"></span></a></td>
+	<!--<td><a class="btn btn-primary btn-large theme-host-modify" href="javascript:;">修改</a>&nbsp;&nbsp;<a class="btn btn-primary btn-large theme-idc-delete" href="javascript:;">删除</a></td>-->
+	<td><a class="btn btn-primary btn-large theme-host-modify" href="/modify?t=idc&id={{item.id}}&name={{item.name}}&isp={{item.company}}">修改</a>&nbsp;&nbsp;<a class="btn btn-primary btn-large theme-idc-delete" href="/delete?t=idc&id={{item.id}}&name={{item.name}}&isp={{item.company}}">删除</a></td>
       </tr>
     {% endfor %}
    </tbody>
@@ -30,26 +33,32 @@
 
                                 <div  id="tab-2" class="tab">
 				<form action="/search/" method="get">
-<a href="/addCompany/" style="display:inline-block;padding-left:0px;"><button type="button" class="btn btn-info" style="display:inline-block;">添加厂家</button></a>
+<a class="btn btn-info theme-isp-modify" style="height:100%;" href="javascript:;">添加厂商</a>
     <input type="submit" value="搜索" style="float:right;">
     <input type="text" name="word" style="float:right;">
 </form>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="myTable">
 <br/>
    <thead>
       <tr>
          <th>厂商名称</th>
+         <th>联系人员</th>
          <th>联系电话</th>
+         <th>公司地址</th>
+         <th>备注信息</th>
          <th>操作</th>
       </tr>
    </thead>
    <tbody>
-      <tr>
-         <tr>
-                {% for item in idcs %}
+                {% for item in isps %}
+      <tr id="isp-{{item.id}}">
                 <td>{{item.name}}</td>
-                <td>{{item.company}}</td>
-         <td><a href="/idcs_modify"><span class="glyphicon glyphicon-pencil" style="color: rgb(0, 0, 0);"> </span></a> <a href="/hosts_delete"><span class="glyphicon glyphicon-remove" style="color: rgb(0, 0, 0);"></span></a></td>
+                <td>{{item.contact}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.info}}</td>
+	<td><a class="btn btn-primary btn-large theme-host-modify" href="/modify?t=isp&id={{item.id}}&name={{item.name}}&c={{item.contact}}&p={{item.phone}}&addr={{item.address}}&info={{item.info}}">修改</a>&nbsp;&nbsp;<a class="btn btn-primary btn-large theme-host-delete" href="/delete?t=isp&id={{item.id}}&name={{item.name}}&c={{item.contact}}&p={{item.phone}}&addr={{item.address}}&info={{item.info}}">删除</a></td>
+	<!--<td><a class="btn btn-primary btn-large theme-host-modify" href="javascript:;">修改</a>&nbsp;&nbsp;<a class="btn btn-primary btn-large theme-host-delete" onclick="deleteRow(this)">删除</a></td>-->
       </tr>
     {% endfor %}
    </tbody>
@@ -109,11 +118,42 @@
           <h3>&nbsp;&nbsp;&nbsp;&nbsp;机房信息录入</h3>
      </div>
      <div class="theme-popbod dform">
-           <form class="theme-signin" name="loginform" action="/check_add/" method="post">{% csrf_token %}
-                     <input class="ipt" type="text" name="idc-name" value="请输入机房名称" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
-                     <input class="ipt" type="text" name="isp-name" value="请输入所属运营商" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+           <form class="theme-signin" name="loginform" action="/check_action/" method="post">{% csrf_token %}
+                     省份名称 <input class="ipt" type="text" name="idc-province" value="输入省份名称" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     城市名称 <input class="ipt" type="text" name="idc-city" value="输入城市名称" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     所属线路 <input class="ipt" type="text" name="idc-isp" value="联通/电信/铁通/移动/电信通" size="40" style="width:280px;height:36px;"/><br/><br/><br/>
+                     厂商名称 <input class="ipt" type="text" name="idc-company" value="厂商公司名称" size="40" style="width:280px;height:36px;"/><br/><br/>
                      <input class="ipt" type="hidden" name="iname" value="add-idc" style="width:280px;height:36px;"/>
                      <input class="l_btn l_btn-primary" type="submit" name="submit" value=" 提交 " style="width:80px;height:36px;"/>
+           </form>
+     </div>
+</div>
+<div class="theme-popover-isp">
+     <div class="theme-poptit-isp">
+          <a href="javascript:;" title="关闭" class="close">关闭</a>
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;厂商信息录入</h3>
+     </div>
+     <div class="theme-popbod dform">
+           <form class="theme-signin" name="loginform" action="/check_action/" method="post">{% csrf_token %}
+                     公司名称 <input class="ipt" type="text" name="isp-name" value="输入厂商公司名称" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     公司地址 <input class="ipt" type="text" name="isp-address" value="输入厂商公司名称" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     联系人员 <input class="ipt" type="text" name="isp-contact" value="输入紧急联系人" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     联系电话 <input class="ipt" type="text" name="isp-phone" value="联系电话" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     备注信息 <input class="ipt" type="text" name="isp-info" value="备注信息" size="40" style="width:280px;height:36px;"/><br/><br/>
+                     <input class="ipt" type="hidden" name="iname" value="add-isp" style="width:280px;height:36px;"/>
+                     <input class="l_btn l_btn-primary" type="submit" name="submit" value=" 提交 " style="width:80px;height:36px;"/>
+           </form>
+     </div>
+</div>
+<div class="theme-popover-idc-delete">
+     <div class="theme-poptit-idc-delete">
+          <a href="javascript:;" title="关闭" class="close">关闭</a>
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;确认删除 ?</h3>
+     </div>
+     <div class="theme-popbod dform">
+           <form class="theme-signin" name="loginform" action="/check_action/" method="post" style="margin:-50px -20px -50px -10px;">{% csrf_token %}
+                     <input class="ipt" type="hidden" name="iname" value="delete-idc" style="width:280px;height:36px;"/>
+                     <input class="l_btn l_btn-primary" type="submit" name="submit" value=" 确认 " style="float:left;width:80px;height:36px;"/>
            </form>
      </div>
 </div>

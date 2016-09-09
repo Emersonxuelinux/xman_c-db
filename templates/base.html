@@ -10,6 +10,7 @@
 <!--<link href="http://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">-->
 	<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/css/nav.css" rel="stylesheet">
+	<link href="/static/css/style.css" rel="stylesheet">
 	<link href="/static/css/lanrenzhijia.css" rel="stylesheet">
 	<link href="/static/css/addJs.css" rel="stylesheet">
 	<script type="text/javascript" src="/static/js/nav.js"></script>
@@ -21,7 +22,7 @@
               <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
+<script type="text/javascript">
 function showHint(str)
 {
 var xmlhttp;
@@ -48,6 +49,7 @@ xmlhttp.onreadystatechange=function()
 xmlhttp.open("GET","/search?host="+str,true);
 xmlhttp.send();
 }
+
 </script>
 <script>
 jQuery(document).ready(function($) {
@@ -71,6 +73,19 @@ jQuery(document).ready(function($) {
         $('.theme-poptit-host .close').click(function(){
                 $('.theme-popover-host-mask').fadeOut(100);
                 $('.theme-popover-host').slideUp(200);
+        })
+
+})
+</script>
+<script>
+jQuery(document).ready(function($) {
+        $('.theme-isp-modify').click(function(){
+                $('.theme-popover-isp-mask').fadeIn(100);
+                $('.theme-popover-isp').slideDown(200);
+        })
+        $('.theme-poptit-isp .close').click(function(){
+                $('.theme-popover-isp-mask').fadeOut(100);
+                $('.theme-popover-isp').slideUp(200);
         })
 
 })
@@ -101,6 +116,20 @@ jQuery(document).ready(function($) {
 
 })
 </script>
+<script>
+jQuery(document).ready(function($) {
+        $('.theme-idc-delete').click(function(){
+                $('.theme-popover-idc-delete-mask').fadeIn(100);
+                $('.theme-popover-idc-delete').slideDown(200);
+        })
+        $('.theme-poptit-idc-delete .close').click(function(){
+                $('.theme-popover-idc-delete-mask').fadeOut(100);
+                $('.theme-popover-idc-delete').slideUp(200);
+        })
+
+})
+</script>
+
 	<title>{% block title %}{% endblock %}</title>
     {% block extrahead %}{% endblock %}
 </head>

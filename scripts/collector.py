@@ -39,4 +39,5 @@ def putData():
 	#获取返回信息
 	content=req.read()
 	print content,
+#	curl -d "name=test1&ip=110.1120.110.110&m=select" http://192.168.100.101:28080/xman/api
 putData()
